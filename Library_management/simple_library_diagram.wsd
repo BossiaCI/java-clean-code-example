@@ -1,0 +1,35 @@
+@startuml SimpleLibrary
+
+class Library {
+  - books: List<Book>
+  - members: List<Member>
+  + addBook(book: Book): void
+  + registerMember(member: Member): void
+  + checkoutBook(memberId: int, bookId: int): boolean
+  + returnBook(memberId: int, bookId: int): boolean
+}
+
+class Book {
+  - id: int
+  - title: String
+  - author: String
+  - available: boolean
+  + getId(): int
+  + isAvailable(): boolean
+  + borrow(): void
+  + returnBook(): void
+}
+
+class Member {
+  - id: int
+  - name: String
+  - borrowedBooks: List<Book>
+  + borrowBook(book: Book): void
+  + returnBook(book: Book): void
+  + getId(): int
+}
+
+Library --> Book : aggregates >
+Library --> Member : aggregates >
+
+@enduml
